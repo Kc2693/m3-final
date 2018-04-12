@@ -14,7 +14,7 @@ class Card extends Component {
   handleClick = async () => {
     const pokemonToId = this.props.data.pokemon
     const response = await API.getPokeIds(pokemonToId)
-
+    
     if(!this.state.clicked) {
       this.setState({
         clicked: true,
