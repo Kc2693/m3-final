@@ -1,4 +1,4 @@
-const fakeReducer = (state=[], action) => {
+const pokeReducer = (state=[], action) => {
   switch (action.type) {
     case "STORE_POKEMON":
       return [...action.pokemon]
@@ -7,4 +7,4 @@ const fakeReducer = (state=[], action) => {
   }
 };
 
-export default fakeReducer
+export default pokeReducer
