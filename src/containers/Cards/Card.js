@@ -11,7 +11,7 @@ class Card extends Component {
     }
   }
 
-  handleClick = async (event) => {
+  handleClick = async () => {
     const pokemonToId = this.props.data.pokemon
     const response = await API.getPokeIds(pokemonToId)
 

@@ -8,17 +8,17 @@ describe('pokeReducer', () => {
   });
 
   it('should set state to an array of pokemon when action.type matches', () => {
-    const mockPokemon = [
+    const mockPokeTypes = [
       {name: "normal"},
       {name: "fighting"},
       {name: "fairy"}
     ];
     const mockAction = {
-      type: "STORE_POKEMON",
-      pokemon: mockPokemon
+      type: "STORE_POKETYPES",
+      pokeTypes: mockPokeTypes
     }
 
-    expect(pokeReducer(undefined, mockAction)).toEqual(mockPokemon)
+    expect(pokeReducer(undefined, mockAction)).toEqual(mockPokeTypes)
   });
-  
+
 });

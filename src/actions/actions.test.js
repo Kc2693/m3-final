@@ -1,15 +1,15 @@
 import * as actions from './actions'
 
 describe('Actions', () => {
-  describe('storePokemon', () => {
-    it('should create an action with pokemon', () => {
-      const mockPokemon = [{name: "normal"},{name: "fighting"},{name: "fairy"}]
+  describe('storePokeTypes', () => {
+    it('should create an action with pokemon types', () => {
+      const mockPokeTypes = [{name: "normal"},{name: "fighting"},{name: "fairy"}]
       const expectedAction = {
-        type: "STORE_POKEMON",
-        pokemon: mockPokemon
+        type: "STORE_POKETYPES",
+        pokeTypes: mockPokeTypes
       }
 
-      expect(actions.storePokemon(mockPokemon)).toEqual(expectedAction)
+      expect(actions.storePokeTypes(mockPokeTypes)).toEqual(expectedAction)
     });
   });
 });
