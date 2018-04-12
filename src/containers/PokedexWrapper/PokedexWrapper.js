@@ -1,28 +1,28 @@
 import React, { Component } from 'react';
 // import PropTypes, { shape, func, string } from 'prop-types';
 import { connect } from 'react-redux';
-import * as actions from '../../actions';
+import * as actions from '../../actions/actions';
 import * as API from '../../Api/Api';
 import loadingGif from './loading.gif';
 import { Card } from '../../components/Cards/Card';
 import "./pokemon-wrapper.css"
 
 class PokedexWrapper extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: true
+    }
+  }
 
-  handleClick = async () => {
+  componentDidMount = async () => {
     await this.getPokes();
-    await this.displayElements();
+    this.setState({isLoading: false})
   }
 
   getPokes = async() => {
     const pokemon = await API.fetchPokeTypes();
     this.props.storePokemon(pokemon)
-  }
-
-  displayElements = () => {
-      this.props.pokemon.length > 8 ?
-      this.makeCards(this.props.pokemon) :
-      this.displayLoadingGif()
   }
 
   makeCards = (pokemon) => {
@@ -46,10 +46,7 @@ class PokedexWrapper extends Component {
   render() {
     return (
       <div>
-        <button
-          onClick={this.handleClick}
-          className="poke-btn">Pokemon!</button>
-        {this.makeCards()}
+        {this.state.isLoading ? this.displayLoadingGif() : this.makeCards()}
       </div>
     )
   }

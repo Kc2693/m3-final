@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes, { shape, func, string } from 'prop-types';
 import { connect } from 'react-redux';
-import { fakeAction } from '../../actions';
+import { fakeAction } from '../../actions/actions';
 class FakeContainer extends Component {
 
   render() {
