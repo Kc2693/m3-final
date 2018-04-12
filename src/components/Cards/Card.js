@@ -1,7 +1,10 @@
 import React from 'react';
+import './card.css';
 
-export const Card = () => {
+export const Card = (props) => {
   return (
-    <div>This is a card</div>
+    <div className="poke-card">
+      <h5>{props.data.name}</h5>
+    </div>
   )
 }

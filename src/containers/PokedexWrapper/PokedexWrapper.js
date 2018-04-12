@@ -15,7 +15,7 @@ export class PokedexWrapper extends Component {
     }
   }
 
-  componentDidMount = async () => {
+  async componentDidMount() {
     await this.getPokes();
     this.setState({isLoading: false})
   }
@@ -45,7 +45,7 @@ export class PokedexWrapper extends Component {
 
   render() {
     return (
-      <div>
+      <div className="poke-wrapper">
         {this.state.isLoading ? this.displayLoadingGif() : this.makeCards()}
       </div>
     )

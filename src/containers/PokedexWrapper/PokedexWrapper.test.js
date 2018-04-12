@@ -1,8 +1,8 @@
 import React from 'react';
-import connectedPokedexWrapper, { PokedexWrapper } from './PokedexWrapper';
 import { shallow, mount  } from 'enzyme';
 import { Provider } from 'react-redux';
 import { connect } from 'react-redux'
+import connectedPokedexWrapper, { PokedexWrapper } from './PokedexWrapper';
 import configureMockStore from 'redux-mock-store';
 const fakeStore = configureMockStore()({pokemon: []})
 
@@ -12,9 +12,8 @@ describe('PokedexWrapper', () => {
   let component;
 
   beforeEach(() => {
-    wrapper = mount(
-        <PokedexWrapper />
-    )
+    wrapper = mount(<PokedexWrapper />)
+    component = wrapper.find(PokedexWrapper)
   });
 
   it('should match the snapshot', () => {
@@ -25,10 +24,10 @@ describe('PokedexWrapper', () => {
      expect(wrapper.find(PokedexWrapper).length).toEqual(1)
   });
 
-  it.only('should have a default state of isLoading: true', () => {
-    wrapper = mount(<PokedexWrapper />, {disableLifecycleMethods:true})
+  it('should have a default state of isLoading: true', () => {
+    wrapper = shallow(<PokedexWrapper />, {disableLifecycleMethods:true})
 
-    expect(wrapper.state.isLoading).toEqual(true)
+    expect(wrapper.state('isLoading')).toEqual(true)
   });
 
   it.skip('should fetch pokemon on componentDidMount', () => {
@@ -38,8 +37,8 @@ describe('PokedexWrapper', () => {
   });
 
   it.skip('should turn isLoading to false after its done fetching', () => {
-
-    expect(wrapper.state.isLoading).toEqual(false)
+    wrapper.update()
+    expect(wrapper.state('isLoading')).toEqual(false)
   });
 
 
