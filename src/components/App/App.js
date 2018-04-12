@@ -7,8 +7,10 @@ class App extends Component {
 
   render() {
     return (
-      <div className='App'>
-        <h1 className='header'> POKéDEX </h1>
+      <div>
+        <div className="header">
+          <h1 className="main-title"> POKéDEX </h1>
+        </div>
         <PokedexWrapper />
       </div>
     );

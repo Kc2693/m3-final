@@ -7,7 +7,7 @@ import loadingGif from './loading.gif';
 import { Card } from '../../components/Cards/Card';
 import "./pokemon-wrapper.css"
 
-class PokedexWrapper extends Component {
+export class PokedexWrapper extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,7 +20,7 @@ class PokedexWrapper extends Component {
     this.setState({isLoading: false})
   }
 
-  getPokes = async() => {
+  async getPokes() {
     const pokemon = await API.fetchPokeTypes();
     this.props.storePokemon(pokemon)
   }
