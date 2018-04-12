@@ -10,9 +10,13 @@ const fakeStore = configureMockStore()({pokemon: []})
 describe('PokedexWrapper', () => {
   let wrapper;
   let component;
+  let props;
 
   beforeEach(() => {
-    wrapper = shallow(<PokedexWrapper />)
+    props = {
+      storePokeTypes: jest.fn(),
+    }
+    wrapper = shallow(<PokedexWrapper {...props}/>)
     component = wrapper.find(PokedexWrapper)
   });
 
@@ -21,7 +25,7 @@ describe('PokedexWrapper', () => {
   });
 
   it.skip('should have a default state of isLoading: true', () => {
-    wrapper = shallow(<PokedexWrapper />, {disableLifecycleMethods:true})
+    wrapper = shallow(<PokedexWrapper {...props}/>, {disableLifecycleMethods:true})
 
     expect(wrapper.state('isLoading')).toEqual(true)
   });
@@ -32,13 +36,11 @@ describe('PokedexWrapper', () => {
       json: () => Promise.resolve({pokemonList: mockPokemon})}));
 
     wrapper = mount(<PokedexWrapper />)
+    wrapper.instance().getPokes = jest.fn()
 
     await Promise.all(mockPokemon);
 
     expect(window.fetch).toHaveBeenCalled();
-    // const spy = await jest.spyOn(wrapper.instance(), 'getPokes')
-
-    // expect(spy).toHaveBeenCalled();
   });
 
   it.skip('should turn isLoading to false after its done fetching', () => {
