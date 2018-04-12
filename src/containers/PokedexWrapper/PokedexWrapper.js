@@ -5,8 +5,14 @@ import * as actions from '../../actions';
 import * as API from '../../Api/Api';
 import loadingGif from './loading.gif';
 import { Card } from '../../components/Cards/Card';
+import "./pokemon-wrapper.css"
 
 class PokedexWrapper extends Component {
+
+  handleClick = async () => {
+    await this.getPokes();
+    await this.displayElements();
+  }
 
   getPokes = async() => {
     const pokemon = await API.fetchPokeTypes();
@@ -14,27 +20,36 @@ class PokedexWrapper extends Component {
   }
 
   displayElements = () => {
-    this.props.pokemon.length > 10 ?
-      this.makeCards() :
+      this.props.pokemon.length > 8 ?
+      this.makeCards(this.props.pokemon) :
       this.displayLoadingGif()
   }
 
-  makeCards = () => {
-    return this.props.pokemon.map((pokemon) => {
-      <Card data={pokemon} />
+  makeCards = (pokemon) => {
+    return this.props.pokemon.map((pokemon, index) => {
+      return <Card
+                data={pokemon}
+                key={index}
+              />
     })
   }
 
   displayLoadingGif = () => {
     return (
-      <img src={loadingGif} alt="pikachu running"/>
+      <img
+        className="loading-img"
+        src={loadingGif}
+        alt="pikachu running"/>
     )
   }
 
   render() {
     return (
       <div>
-        <button onClick={this.getPokes}>Pokemon!</button>
+        <button
+          onClick={this.handleClick}
+          className="poke-btn">Pokemon!</button>
+        {this.makeCards()}
       </div>
     )
   }
