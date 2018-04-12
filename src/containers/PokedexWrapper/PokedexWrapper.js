@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions/actions';
 import * as API from '../../Api/Api';
 import loadingGif from './loading.gif';
-import Card from '../../components/Cards/Card';
+import Card from '../Cards/Card';
 import "./pokemon-wrapper.css"
 
 export class PokedexWrapper extends Component {
@@ -21,12 +21,12 @@ export class PokedexWrapper extends Component {
   }
 
   async getPokes() {
-    const pokemon = await API.fetchPokeTypes();
-    this.props.storePokemon(pokemon)
+    const pokemonTypeList = await API.fetchPokeTypes();
+    this.props.storePokeTypes(pokemonTypeList)
   }
 
   makeCards = (pokemon) => {
-    return this.props.pokemon.map((pokemon, index) => {
+    return this.props.pokeTypes.map((pokemon, index) => {
       return <Card
                 data={pokemon}
                 key={index}
@@ -54,11 +54,11 @@ export class PokedexWrapper extends Component {
 
 
 const mapStateToProps = (state) => {
-  return { pokemon: state.pokemon }
+  return { pokeTypes: state.pokeTypes }
 }
 
 const mapDispatchToProps = dispatch => ({
-  storePokemon: (pokemon) => dispatch(actions.storePokemon(pokemon))
+  storePokeTypes: (pokeTypes) => dispatch(actions.storePokeTypes(pokeTypes))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PokedexWrapper);
