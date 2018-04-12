@@ -8,8 +8,7 @@ class PokedexWrapper extends Component {
 
   getPokes = async() => {
     const pokemon = await API.fetchPokeTypes();
-
-    actions.storePokemon(pokemon)
+    this.props.storePokemon(pokemon)
   }
 
   render() {

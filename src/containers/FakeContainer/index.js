@@ -22,7 +22,7 @@ FakeContainer.propTypes = {
 };
 
 const mapStateToProps = ({ fake }) => ({ fake });
-const mapDispatchToProps = dispatch => ({ fakeAction:
-  () => dispatch(fakeAction())
+const mapDispatchToProps = dispatch => ({
+  fakeAction: () => dispatch(fakeAction())
 });
 export default connect(mapStateToProps, mapDispatchToProps)(FakeContainer);
