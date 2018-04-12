@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions/actions';
 import * as API from '../../Api/Api';
 import loadingGif from './loading.gif';
-import { Card } from '../../components/Cards/Card';
+import Card from '../../components/Cards/Card';
 import "./pokemon-wrapper.css"
 
 export class PokedexWrapper extends Component {

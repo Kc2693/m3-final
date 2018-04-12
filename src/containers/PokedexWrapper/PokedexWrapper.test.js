@@ -12,7 +12,7 @@ describe('PokedexWrapper', () => {
   let component;
 
   beforeEach(() => {
-    wrapper = mount(<PokedexWrapper />)
+    wrapper = shallow(<PokedexWrapper />)
     component = wrapper.find(PokedexWrapper)
   });
 
@@ -20,24 +20,28 @@ describe('PokedexWrapper', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('rendered the component', () => {
-     expect(wrapper.find(PokedexWrapper).length).toEqual(1)
-  });
-
-  it('should have a default state of isLoading: true', () => {
+  it.skip('should have a default state of isLoading: true', () => {
     wrapper = shallow(<PokedexWrapper />, {disableLifecycleMethods:true})
 
     expect(wrapper.state('isLoading')).toEqual(true)
   });
 
-  it.skip('should fetch pokemon on componentDidMount', () => {
-    const spy = jest.spyOn(wrapper.instance(), 'getPokes')
+  it('should fetch pokemon on componentDidMount', async () => {
+    const mockPokemon = [{name: "normal"},{name: "fighting"},{name: "fairy"}]
+    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      json: () => Promise.resolve({pokemonList: mockPokemon})}));
 
-    expect(spy).toHaveBeenCalled();
+    wrapper = mount(<PokedexWrapper />)
+
+    await Promise.all(mockPokemon);
+
+    expect(window.fetch).toHaveBeenCalled();
+    // const spy = await jest.spyOn(wrapper.instance(), 'getPokes')
+
+    // expect(spy).toHaveBeenCalled();
   });
 
   it.skip('should turn isLoading to false after its done fetching', () => {
-    wrapper.update()
     expect(wrapper.state('isLoading')).toEqual(false)
   });
 

@@ -4,8 +4,7 @@ export const fetchPokeTypes = async () => {
   try {
     const initFetch = await fetch(`${root}/types`)
     const pokemonList = await initFetch.json();
-    const IdentifiedPokemon = await getPokeIds(pokemonList)
-    return IdentifiedPokemon;
+    return pokemonList;
   } catch (err) {
     throw err;
   }
