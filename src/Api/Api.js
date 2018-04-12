@@ -11,17 +11,11 @@ export const fetchPokeTypes = async () => {
 }
 
 export const getPokeIds = async (pokemonList) => {
-  const completedList = await pokemonList.map(async(pokeType) => {
-    const pokeIds = pokeType.pokemon.map(async(pokemon) => {
-      const initFetch = await fetch(`${root}/pokemon/${pokemon}`)
-      const identified = await initFetch.json()
+  const identifiedPokemon = await pokemonList.map(async(pokeId) => {
+      const response = await fetch(`${root}/pokemon/${pokeId}`);
+      const identified = await response.json();
 
       return identified
     })
-
-    pokeType.pokemon = await Promise.all(pokeIds)
-
-    return pokeType;
-  })
-  return Promise.all(completedList)
+    return Promise.all(identifiedPokemon)
 }
