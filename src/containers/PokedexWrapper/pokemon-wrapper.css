@@ -8,6 +8,8 @@
 .poke-wrapper {
   display: flex;
   flex-flow: row wrap;
-  width: 600px;
+  justify-content: space-around;
+  align-content: space-around;
+  width: 650px;
   margin: auto;
 }
