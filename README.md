@@ -1,7 +1,5 @@
 # Pokedex
 
-## By Kailin Cannon
-
 This application is built from create-react-app
 
 - `npm install`
